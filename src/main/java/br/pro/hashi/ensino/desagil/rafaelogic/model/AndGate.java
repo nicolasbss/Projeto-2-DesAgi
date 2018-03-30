@@ -2,32 +2,32 @@ package br.pro.hashi.ensino.desagil.rafaelogic.model;
 
 public class AndGate extends Gate {
 	
-	private NandGate nandfirst;
-	private NandGate nandsecond;
+	private NandGate nandFirst;
+	private NandGate nandSecond;
 	
 	
 	public AndGate() {
-		nandfirst = new NandGate();
-		nandsecond = new NandGate();
+		nandFirst = new NandGate();
+		nandSecond = new NandGate();
 		
 		
-		nandsecond.connect(0, nandfirst);
-		nandsecond.connect(1, nandfirst);
+		nandSecond.connect(0, nandFirst);
+		nandSecond.connect(1, nandFirst);
 	}
 	
 	@Override
 	public boolean read() {
-		return nandsecond.read();
+		return nandSecond.read();
 	}
 	
 	@Override
 	public void connect(int pinIndex, Emitter emitter) {
 		if (pinIndex == 0) {
-			nandfirst.connect(0, emitter);
+			nandFirst.connect(0, emitter);
 		}
 		
 		if (pinIndex == 1) {
-			nandfirst.connect(1, emitter);
+			nandFirst.connect(1, emitter);
 		}
 	}
 
