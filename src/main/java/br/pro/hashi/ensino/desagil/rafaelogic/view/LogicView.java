@@ -89,8 +89,8 @@ public class LogicView extends JPanel implements ActionListener {
 			source1.turn(in1);
 			source2.turn(in2);
 			
-			gate.connect(0, source2);
-			gate.connect(1, source1);
+			gate.connect(0, source1);
+			gate.connect(1, source2);
 			
 		}
 		
