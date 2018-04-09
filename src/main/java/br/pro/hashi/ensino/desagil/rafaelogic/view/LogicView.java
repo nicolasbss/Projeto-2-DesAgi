@@ -26,7 +26,6 @@ public class LogicView extends JPanel implements ActionListener {
     
 	public LogicView(Gate gate) {
 		this.gate = gate;
-		String name = gate.toString();
 		
 		//criacao dos objetos da classe JCheckBox usados para criar os checkbox
 		in1Check = new JCheckBox();
@@ -39,11 +38,11 @@ public class LogicView extends JPanel implements ActionListener {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		
-		if (name == "Not") {
+		if (gate.getSize() == 1) {
 			add(inLabel);
 			add(in1Check);
 		}
-		else {
+		if (gate.getSize() == 2) {
 			add(inLabel);
 			add(in1Check);
 			add(in2Check);
@@ -68,15 +67,34 @@ public class LogicView extends JPanel implements ActionListener {
 		Source source1 = new Source();
 		Source source2 = new Source();
 		
-		//obtendo o estado das checkboxes (true ou false/checado ou nao)
-		boolean in1 = in1Check.isSelected();
-		boolean in2 = in2Check.isSelected();
+		if(gate.getSize() == 1) {
+			
+			//obtendo o estado da checkbox (true ou false/checado ou nao)
+			boolean in1 = in1Check.isSelected();
+			
+			//ligando a fonte
+			source1.turn(in1);
+			
+			gate.connect(0, source1);
+			
+		}
 		
-		source1.turn(in1);
-		source2.turn(in2);
+		if(gate.getSize() == 2) {
+			
+			//obtendo o estado das checkboxes (true ou false/checado ou nao)
+			boolean in1 = in1Check.isSelected();
+			boolean in2 = in2Check.isSelected();
+			
+			//ligando as fontes
+			source1.turn(in1);
+			source2.turn(in2);
+			
+			gate.connect(0, source2);
+			gate.connect(1, source1);
+			
+		}
 		
-		gate.connect(0, source2);
-		gate.connect(1, source1);
+
 		boolean result;
 		result = gate.read();
 		//devolvendo o estado da ultima checkbox de acordo com o resultado da porta logica

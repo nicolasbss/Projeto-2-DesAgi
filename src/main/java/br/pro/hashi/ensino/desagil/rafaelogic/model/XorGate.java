@@ -8,7 +8,7 @@ public class XorGate extends Gate {
 	private NandGate nandTop;
 	
 	public XorGate(){
-		super("Xor");
+		super("Xor",2);
 		nandLeft = new NandGate();
 		nandBottom = new NandGate();
 		nandRight = new NandGate();
